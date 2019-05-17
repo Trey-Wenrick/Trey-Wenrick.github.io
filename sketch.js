@@ -1,149 +1,85 @@
-var ball = {
-	x:300,
-	y:200,
-  xspeed: 4,
-  yspeed: -3
-}
-var ball2 = {
-	x:200,
-	y:200,
-  xspeed: 4,
-  yspeed: -3
-}
-
-var ball3 = {
-	x:50,
-	y:270,
-  xspeed: 4,
-  yspeed: -3
-}
-var ball4 = {
-	x:100,
-	y:400,
-  xspeed: 4,
-  yspeed: -3
-}
-
-var ball5 = {
-	x:20,
-	y:200,
-  xspeed: 4,
-  yspeed: -3
-}
-var ball5 = {
-	x:0,
-	y:400,
-  xspeed: 4,
-  yspeed: -3
-}
-var ball6 = {
-	x:200,
-	y:100,
-  xspeed: 4,
-  yspeed: -3
-}
-var a = Math.floor(Math.random() * 255)
-var b = Math.floor(Math.random() * 255)
-var c = Math.floor(Math.random() * 255)
-var d = Math.floor(Math.random() * 255)
-var e = Math.floor(Math.random() * 255)
-var f = Math.floor(Math.random() * 255)
-var g = Math.floor(Math.random() * 255)
-var h = Math.floor(Math.random() * 255)
-var i = Math.floor(Math.random() * 255)
-var j = Math.floor(Math.random() * 255)
-var k = Math.floor(Math.random() * 255)
-var l = Math.floor(Math.random() * 255)
-var m = Math.floor(Math.random() * 255)
-var n = Math.floor(Math.random() * 255)
-var o = Math.floor(Math.random() * 255)
-var p = Math.floor(Math.random() * 255)
-var q = Math.floor(Math.random() * 255)
-var r = Math.floor(Math.random() * 255)
-
-
+let rain = []
+let b = []
+var angle = 0;
+var slider;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(800, 600);
+  slider = createSlider(0,TWO_PI,PI/4,0.01);
+  for(let i = 0; i < 300; i++){
+    rain[i] = new Rain();
+    }
 }
-
 function draw() {
-  background(0,20);
-  move();
-  bounce();
-  display();
+  background(54,186,219);
+  if(mouseX>20 && mouseX<150 && mouseY>40 && mouseY<120){
+    background(0);
+    for (let i =0 ; i< 300;i++){
+      rain[i].move();
+      rain[i].show();
+    }
+  }
+  fill(255,255,0)
+  stroke(255,255,0)
+  // sun rays
+  line(670,60,630,60)
+  line(674,85,630,100)
+  line(692,105,662,123)
+  line(714,117,691,148)
+  line(677,35,627,25)
+  //sun
+  ellipse(730,60,100,100);
+  //cloud
+  fill(100)
+  stroke(255)
+  ellipse(50,100,50,50);
+  ellipse(75,70,50,50);
+  ellipse(110,70,50,50);
+  ellipse(90,100,50,50);
+  ellipse(130,95,50,50);
   
-
+  angle = slider.value();
+  stroke(255);
+  translate(400,height);
+  branch(200);
 }
-
-function move(){
-  ball.x = ball.x + ball.xspeed
-  ball.y = ball.y + ball.yspeed
-  
-  ball2.x = ball2.x + ball2.xspeed
-  ball2.y = ball2.y + ball2.yspeed
-  
-  ball3.x = ball3.x + ball3.xspeed
-  ball3.y = ball3.y + ball3.yspeed
-  
-  ball4.x = ball4.x + ball4.xspeed
-  ball4.y = ball4.y + ball4.yspeed
-  
-  ball5.x = ball5.x + ball5.xspeed
-  ball5.y = ball5.y + ball5.yspeed
-  
-  ball6.x = ball6.x + ball6.xspeed
-  ball6.y = ball6.y + ball6.yspeed
+function branch(len) {
+  line(0,0,0,-len)
+  translate(0,-len)
+  if(len > 4) {
+    push();
+    rotate(angle);
+    branch(len * 0.67);
+    pop();
+    push();
+    rotate(-angle);
+    branch(len * 0.67);
+    pop();
+  }
+  if(len < 4){
+    noStroke();
+    fill("green")
+    ellipse(0,len,3,10)
+  }
 }
-
-function bounce(){
-  if(ball.x > width || ball.x < 0)
-    ball.xspeed = ball.xspeed * -1
-  if(ball.y > height || ball.y < 0)
-    ball.yspeed = ball.yspeed * -1;
-  
-  if(ball2.x > width || ball2.x < 0)
-    ball2.xspeed = ball2.xspeed * -1 
-  if(ball2.y > height || ball2.y < 0)
-    ball2.yspeed = ball2.yspeed * -1;
-  
-  if(ball3.x > width || ball3.x < 0)
-    ball3.xspeed = ball3.xspeed * -1 
-  if(ball3.y > height || ball3.y < 0)
-    ball3.yspeed = ball3.yspeed * -1;
-  
-  if(ball4.x > width || ball4.x < 0)
-    ball4.xspeed = ball4.xspeed * -1 
-  if(ball4.y > height || ball4.y < 0)
-    ball4.yspeed = ball4.yspeed * -1;
-  
-  if(ball5.x > width || ball5.x < 0)
-    ball5.xspeed = ball5.xspeed * -1 
-  if(ball5.y > height || ball5.y < 0)
-    ball5.yspeed = ball5.yspeed * -1;
-  
-  if(ball6.x > width || ball6.x < 0)
-    ball6.xspeed = ball6.xspeed * -1 
-  if(ball6.y > height || ball6.y < 0)
-    ball6.yspeed = ball6.yspeed * -1;
+  class Rain {
+    constructor(){
+      this.x = random(width);
+      this.y = random(0,-height);
+    }
+    move() {
+      this.y = this.y + random(3,10) //random(1,5)
+      if(this.y > height){
+        this.y = random(0, -height)
+      }
     
+    }
+    show() {
+      noStroke()
+      fill(0,0,255)
+      ellipse(this.x,this.y,5,10);
+      
+    }
 }
 
-function display(){
-  stroke("black")
-  strokeWeight(0)
-  fill(a,b,c);
-  ellipse(ball.x,ball.y,50,50)
-  fill(d,e,f)
-  ellipse(ball2.x,ball2.y,50,50)
-  fill(g,h,i)
-  ellipse(ball3.x,ball3.y,50,50)
-  fill(j,k,l)
-  ellipse(ball4.x,ball4.y,50,50)
-  fill(m,n,o)
-  ellipse(ball5.x,ball5.y,50,50)
-  fill(p,q,r)
-  ellipse(ball6.x,ball6.y,50,50)
- 
-  
-}
+
