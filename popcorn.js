@@ -1,7 +1,7 @@
 let balls=[];
 let numBalls=50;
 function setup() {
-    createCanvas(500, 500);
+    createCanvas(1420, 710);
     for (let i = 0; i < numBalls; i++) {
         balls[i] = new PopcornBall (
             random(width),
@@ -10,7 +10,7 @@ function setup() {
     }
 }
 function draw() {
-    background(155);
+    background("grey");
     for (let i = 0; i < balls.length; i++) {
         balls[i].display();
         balls[i].bounce();
