@@ -10,7 +10,7 @@ function draw() {
 
     noStroke();
     fill(r,g,150);
-    ellipse(mouseX,mouseY,15,15);
+    ellipse(mouseX,mouseY,30,30);
 
 }
 function mousePressed(){
