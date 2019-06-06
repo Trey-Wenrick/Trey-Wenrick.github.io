@@ -64,7 +64,7 @@ var r = Math.floor(Math.random() * 255)
 
 
 function setup() {
-    createCanvas(1420, 710);
+    createCanvas(1435, 755);
 }
 
 function draw() {

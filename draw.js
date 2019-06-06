@@ -1,5 +1,5 @@
 function setup() {
-    createCanvas(1420, 710);
+    createCanvas(1435, 755);
     background(100);
     r = 40
     g = 175

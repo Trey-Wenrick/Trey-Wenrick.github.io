@@ -4,7 +4,7 @@ var angle = 0;
 var slider;
 
 function setup() {
-    createCanvas(1420, 710);
+    createCanvas(1435, 740);
     slider = createSlider(0,TWO_PI,PI/4,0.01);
     for(let i = 0; i < 300; i++){
         rain[i] = new Rain();

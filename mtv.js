@@ -2,7 +2,7 @@ let bubbles = [];
 
 
 function setup() {
-    createCanvas(1420, 710);
+    createCanvas(1440, 755);
     frameRate(10)
 }
 

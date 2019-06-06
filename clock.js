@@ -1,5 +1,5 @@
 function setup() {
-    createCanvas(400, 400);
+    createCanvas(1435, 755);
     angleMode(DEGREES);
 }
 
@@ -15,9 +15,9 @@ function draw() {
     textSize(50);
     textFont();
     fill(255)
-    text(hr + ':' + mn + ':' + sc,110,210)
+    text(hr + ':' + mn + ':' + sc,620,360)
 
-    translate(200,200);
+    translate(700,350);
     rotate(-90);
     strokeWeight(8 );
     stroke(255,100,150);
