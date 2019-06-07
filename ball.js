@@ -4,7 +4,7 @@ var x = 0
 var y = 0
 
 function setup() {
-    createCanvas(400, 400);
+    createCanvas(500, 500);
     greeting = createElement('h2','What Color Bubble?');
     input = createInput();
     button = createButton('Submit');
