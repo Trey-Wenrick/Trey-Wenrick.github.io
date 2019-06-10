@@ -14,7 +14,7 @@ function draw() {
     r = map(mouseX,0,600,0,255)
     b = map(mouseY,0,400,0,255)
     g = map(mouseX,0,600,0,255)
-    background(r,0,b);
+    background(0,g,b);
     fill(255);
     ellipse(mouseX,mouseY,25,25);
 }
