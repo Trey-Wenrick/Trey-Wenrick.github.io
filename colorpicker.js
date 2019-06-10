@@ -3,7 +3,7 @@ var b = 0;
 var g = 0;
 
 function setup() {
-    createCanvas(1420, 710);
+    createCanvas(1435, 755);
 
 }
 function mousePressed(){
